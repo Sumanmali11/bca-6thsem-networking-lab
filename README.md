@@ -74,7 +74,7 @@ The `practise/` directory contains sample code for various Network Programming w
 
 1. **Clone the Repository**:
     ```bash
-   git clone https://github.com/Sumanmali11/bca-6thsem-bca_networking_lab
+   git clone https://github.com/Sumanmali11/bca-6thsem-networking-lab
 2. **Navigate to the Desired Directory**:
    For lab reports, go to lab/.
    For practise exercises, go to practise/.
