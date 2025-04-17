@@ -5,7 +5,7 @@ import java.net.*;
 public class DictClass {
     public static final String SERVER = "dict.org";
     public static final int PORT = 2628;
-    public static final int TIMEOUT = 15000;
+    public static final int TIMEOUT = 150000;
 
     public static void main(String[] args) {
         Socket socket = null;
