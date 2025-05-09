@@ -5,6 +5,9 @@ import java.net.*;
 
 public class SocketInfo {
     public static void main(String[] args) {
+        if (args.length == 0) {
+            args = new String[] { "localhost" };
+        }
         for (int i = 0; i < args.length; i++) {
             try {
                 Socket socket = new Socket(args[i], 80);

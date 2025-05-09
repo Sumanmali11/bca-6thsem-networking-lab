@@ -1,5 +1,3 @@
-package practise.Chapter_7_Server_Socket;
-
 import java.net.*;
 import java.io.*;
 
@@ -10,22 +8,17 @@ public class DaytimeClient {
             hostname = args[0];
         }
 
-        PrintWriter out = null;
         BufferedReader networkIn = null;
         try {
             Socket socket = new Socket(hostname, 3000);
-            networkIn = new BufferedReader(new InputStreamReader(
-                    socket.getInputStream()));
-            out = new PrintWriter(socket.getOutputStream());
+            OutputStream out = socket.getOutputStream();
+            Writer writer = new OutputStreamWriter(out, "UTF-8");
+            writer = new BufferedWriter(writer);
             System.out.println("Connected to Echo Server");
-            while (true) {
-                String theLine = networkIn.readLine();
-                if (theLine.equals("."))
-                    break;
-                out.println(theLine);
-                out.flush();
-                System.out.println(networkIn.readLine());
-            }
+
+            out.println(writer);
+            out.flush();
+            System.out.println(networkIn.readLine());
             socket.close();
         } catch (IOException e) {
             System.err.println(e.getMessage());

@@ -1,5 +1,3 @@
-package practise.Chapter_7_Server_Socket;
-
 import java.net.*;
 import java.io.*;
 import java.util.Date;
