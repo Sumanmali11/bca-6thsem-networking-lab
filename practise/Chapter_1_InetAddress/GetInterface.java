@@ -11,10 +11,10 @@ public class GetInterface {
                 System.out.println(ni);
             }
             NetworkInterface nui = NetworkInterface.getByName("eth0");
-            if (ni == null) {
+            if (nui == null) {
                 System.out.println("No interface: eth0");
             } else {
-                System.out.println(ni);
+                System.out.println(nui);
             }
         } catch (SocketException e) {
             System.out.println("Error Caught: " + e.getMessage());
