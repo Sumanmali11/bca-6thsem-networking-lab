@@ -10,7 +10,7 @@ public class DaytimeClient {
 
         try {
             Socket daytime = new Socket(hostname, 3000);
-            System.out.println("Connection established");
+            System.out.println("Connection established with " + daytime.getInetAddress() + " at port " + daytime.getPort());
             daytime.setSoTimeout(2000);
             BufferedReader reader = new BufferedReader(
                     new InputStreamReader(daytime.getInputStream())
