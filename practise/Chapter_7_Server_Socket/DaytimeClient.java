@@ -8,29 +8,18 @@ public class DaytimeClient {
             hostname = args[0];
         }
 
-        BufferedReader networkIn = null;
         try {
-            Socket socket = new Socket(hostname, 3000);
-            OutputStream out = socket.getOutputStream();
-            Writer writer = new OutputStreamWriter(out, "UTF-8");
-            writer = new BufferedWriter(writer);
-            System.out.println("Connected to Echo Server");
+            Socket daytime = new Socket(hostname, 3000);
+            System.out.println("Connection established");
+            daytime.setSoTimeout(2000);
+            BufferedReader reader = new BufferedReader(
+                    new InputStreamReader(daytime.getInputStream())
+            );
+            System.out.println("Results : " + reader.readLine());
 
-            out.println(writer);
-            out.flush();
-            System.out.println(networkIn.readLine());
-            socket.close();
+            daytime.close();
         } catch (IOException e) {
             System.err.println(e.getMessage());
-        } finally {
-            try {
-                if (networkIn != null)
-                    networkIn.close();
-                if (out != null)
-                    out.close();
-            } catch (IOException e) {
-                System.err.println(e.getMessage());
-            }
-        }
+        } 
     }
 }

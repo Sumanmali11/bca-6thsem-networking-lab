@@ -10,6 +10,7 @@ public class DaytimeServer {
             while (true) {
                 try {
                     Socket connection = server.accept();
+                    System.out.println("Connection established from " + connection.getLocalAddress() + ":" + connection.getLocalPort());
                     Thread task = new DaytimeThread(connection);
                     task.start();
                 } catch (IOException e) {
