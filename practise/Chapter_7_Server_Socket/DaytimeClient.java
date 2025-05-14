@@ -8,18 +8,27 @@ public class DaytimeClient {
             hostname = args[0];
         }
 
-        try {
-            Socket daytime = new Socket(hostname, 3000);
-            System.out.println("Connection established with " + daytime.getInetAddress() + " at port " + daytime.getPort());
-            daytime.setSoTimeout(2000);
-            BufferedReader reader = new BufferedReader(
-                    new InputStreamReader(daytime.getInputStream())
-            );
-            System.out.println("Results : " + reader.readLine());
+        try (
+                Socket socket = new Socket(hostname, 3000);
+                BufferedReader userInput = new BufferedReader(new InputStreamReader(System.in));
+                PrintWriter out = new PrintWriter(socket.getOutputStream(), true);
+                BufferedReader serverIn = new BufferedReader(new InputStreamReader(socket.getInputStream()));) {
+            String inputLine;
+            System.out.println("Type messages to send to the server (type 'stop' to quit):");
 
-            daytime.close();
+            while ((inputLine = userInput.readLine()) != null) {
+                out.println(inputLine); 
+
+                if ("stop".equalsIgnoreCase(inputLine.trim())) {
+                    break;
+                }
+
+                String response = serverIn.readLine();
+                System.out.println("Server: " + response);
+            }
         } catch (IOException e) {
-            System.err.println(e.getMessage());
-        } 
+            System.err.println("Error: " + e.getMessage());
+        }
+
     }
 }
